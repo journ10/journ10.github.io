@@ -70,6 +70,10 @@ export const zh = {
     contact: '联系',
     rights: '保留所有权利',
   },
+  themeSwitcher: {
+    trigger: '切换主题',
+    panel: '选择主题',
+  },
 }
 
 export type Locale = typeof zh

@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { themes, type ThemeId } from '../../theme/themes'
+import { useLocale } from '../../i18n/index'
 import './ThemeSwitcher.css'
 
 interface Props {
@@ -10,7 +11,8 @@ interface Props {
 export default function ThemeSwitcher({ theme, setTheme }: Props) {
   const [open, setOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
-  const current = themes.find((t) => t.id === theme) ?? themes[0]
+  const { lang, t } = useLocale()
+  const current = themes.find((th) => th.id === theme) ?? themes[0]
 
   // Close on outside click
   useEffect(() => {
@@ -25,7 +27,7 @@ export default function ThemeSwitcher({ theme, setTheme }: Props) {
     }
     document.addEventListener('pointerdown', onPointerDown)
     return () => document.removeEventListener('pointerdown', onPointerDown)
-  }, [])
+  }, [open])
 
   // Close on Escape
   useEffect(() => {
@@ -41,12 +43,12 @@ export default function ThemeSwitcher({ theme, setTheme }: Props) {
       <button
         className={`ts-trigger${open ? ' ts-trigger--open' : ''}`}
         onClick={() => setOpen((v) => !v)}
-        aria-label="切换主题"
+        aria-label={t.themeSwitcher.trigger}
         aria-expanded={open}
         aria-haspopup="listbox"
       >
         <span className={`ts-dot ts-dot--${theme}`} aria-hidden="true" />
-        <span className="ts-label">{current.label}</span>
+        <span className="ts-label">{current.label[lang]}</span>
         <svg
           className="ts-chevron"
           width="12"
@@ -68,25 +70,25 @@ export default function ThemeSwitcher({ theme, setTheme }: Props) {
       <div
         className={`ts-panel${open ? ' ts-panel--open' : ''}`}
         role="listbox"
-        aria-label="选择主题"
+        aria-label={t.themeSwitcher.panel}
       >
-        {themes.map((t) => (
+        {themes.map((th) => (
           <button
-            key={t.id}
-            className={`ts-option${theme === t.id ? ' ts-option--active' : ''}`}
+            key={th.id}
+            className={`ts-option${theme === th.id ? ' ts-option--active' : ''}`}
             onClick={() => {
-              setTheme(t.id)
+              setTheme(th.id)
               setOpen(false)
             }}
             role="option"
-            aria-selected={theme === t.id}
+            aria-selected={theme === th.id}
           >
-            <span className={`ts-swatch ts-swatch--${t.id}`} aria-hidden="true" />
+            <span className={`ts-swatch ts-swatch--${th.id}`} aria-hidden="true" />
             <span className="ts-option-info">
-              <span className="ts-option-name">{t.label}</span>
-              <span className="ts-option-desc">{t.desc}</span>
+              <span className="ts-option-name">{th.label[lang]}</span>
+              <span className="ts-option-desc">{th.desc[lang]}</span>
             </span>
-            {theme === t.id && (
+            {theme === th.id && (
               <svg
                 className="ts-check"
                 width="14"
