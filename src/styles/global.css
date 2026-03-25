@@ -620,6 +620,12 @@ section {
   transform: translateY(-5px);
 }
 
+/* ---- Contact icon in light theme ---- */
+[data-theme="light"] .contact-icon {
+  background: rgba(91, 88, 240, 0.12) !important;
+  border: 1px solid rgba(91, 88, 240, 0.2) !important;
+}
+
 /* ---- ThemeSwitcher ---- */
 [data-theme="light"] .ts-trigger {
   background: rgba(255,255,255,0.65) !important;
