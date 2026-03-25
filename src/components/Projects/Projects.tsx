@@ -1,17 +1,19 @@
 import { useScrollReveal } from '../../hooks/useScrollReveal'
+import { useLocale } from '../../i18n/index'
 import { projects } from '../../data/resumeData'
 import './Projects.css'
 
 export default function Projects() {
   useScrollReveal()
+  const { lang, t } = useLocale()
 
   return (
     <section id="projects">
       <div className="container">
         <div className="section-header reveal">
-          <div className="section-tag">Projects</div>
-          <h2 className="section-title">项目作品</h2>
-          <p className="section-subtitle">精选项目展示</p>
+          <div className="section-tag">{t.projects.sectionTag}</div>
+          <h2 className="section-title">{t.projects.sectionTitle}</h2>
+          <p className="section-subtitle">{t.projects.sectionSubtitle}</p>
           <div className="section-divider"></div>
         </div>
         <div className="projects-grid">
@@ -25,8 +27,8 @@ export default function Projects() {
                 <i className={`${proj.icon} project-icon`}></i>
               </div>
               <div className="project-body">
-                <div className="project-title">{proj.title}</div>
-                <div className="project-desc">{proj.description}</div>
+                <div className="project-title">{proj.title[lang]}</div>
+                <div className="project-desc">{proj.description[lang]}</div>
                 <div className="project-tags">
                   {proj.tags.map((tag) => (
                     <span key={tag} className="project-tag">{tag}</span>
@@ -34,10 +36,10 @@ export default function Projects() {
                 </div>
                 <div className="project-links">
                   <a href={proj.github} className="project-link">
-                    <i className="fab fa-github"></i> 源代码
+                    <i className="fab fa-github"></i> {t.projects.sourceCode}
                   </a>
                   <a href={proj.demo} className="project-link">
-                    <i className="fas fa-external-link-alt"></i> 在线演示
+                    <i className="fas fa-external-link-alt"></i> {t.projects.liveDemo}
                   </a>
                 </div>
               </div>

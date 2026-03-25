@@ -1,16 +1,18 @@
 import { useScrollReveal } from '../../hooks/useScrollReveal'
+import { useLocale } from '../../i18n/index'
 import { educations } from '../../data/resumeData'
 import './Education.css'
 
 export default function Education() {
   useScrollReveal()
+  const { lang, t } = useLocale()
 
   return (
     <section id="education">
       <div className="container">
         <div className="section-header reveal">
-          <div className="section-tag">Education</div>
-          <h2 className="section-title">教育背景</h2>
+          <div className="section-tag">{t.education.sectionTag}</div>
+          <h2 className="section-title">{t.education.sectionTitle}</h2>
           <div className="section-divider"></div>
         </div>
         <div className="edu-grid">
@@ -19,13 +21,13 @@ export default function Education() {
               <div className="edu-icon">
                 <i className={edu.icon}></i>
               </div>
-              <div className="edu-degree">{edu.degree}</div>
-              <div className="edu-major">{edu.major}</div>
+              <div className="edu-degree">{edu.degree[lang]}</div>
+              <div className="edu-major">{edu.major[lang]}</div>
               <div className="edu-school">
-                <i className={edu.schoolIcon}></i> {edu.school}
+                <i className={edu.schoolIcon}></i> {edu.school[lang]}
               </div>
               <div className="edu-period">
-                <i className="fas fa-calendar"></i> {edu.period}
+                <i className="fas fa-calendar"></i> {edu.period[lang]}
               </div>
             </div>
           ))}
