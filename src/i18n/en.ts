@@ -72,4 +72,8 @@ export const en: Locale = {
     contact: 'Contact',
     rights: 'All rights reserved',
   },
+  themeSwitcher: {
+    trigger: 'Switch Theme',
+    panel: 'Choose a Theme',
+  },
 }
