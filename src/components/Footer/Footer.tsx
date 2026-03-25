@@ -1,19 +1,22 @@
+import { useLocale } from '../../i18n/index'
 import { personalInfo } from '../../data/resumeData'
 import './Footer.css'
 
 export default function Footer() {
+  const { t } = useLocale()
+
   return (
     <footer>
       <div className="footer-logo">{personalInfo.logo}</div>
       <ul className="footer-links">
-        <li><a href="#hero">首页</a></li>
-        <li><a href="#about">关于</a></li>
-        <li><a href="#skills">技能</a></li>
-        <li><a href="#projects">项目</a></li>
-        <li><a href="#contact">联系</a></li>
+        <li><a href="#hero">{t.footer.home}</a></li>
+        <li><a href="#about">{t.footer.about}</a></li>
+        <li><a href="#skills">{t.footer.skills}</a></li>
+        <li><a href="#projects">{t.footer.projects}</a></li>
+        <li><a href="#contact">{t.footer.contact}</a></li>
       </ul>
       <p>
-        © {new Date().getFullYear()} {personalInfo.name}. 保留所有权利. Made with{' '}
+        © {new Date().getFullYear()} {personalInfo.name}. {t.footer.rights}. Made with{' '}
         <i className="fas fa-heart footer-heart"></i> in China
       </p>
     </footer>

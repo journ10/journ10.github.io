@@ -129,3 +129,21 @@
     z-index: 1001;
   }
 }
+
+.lang-toggle {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: inherit;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: background 0.2s, border-color 0.2s;
+  margin-right: 8px;
+}
+.lang-toggle:hover {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.5);
+}
