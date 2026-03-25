@@ -1,16 +1,18 @@
 import { useScrollReveal } from '../../hooks/useScrollReveal'
+import { useLocale } from '../../i18n/index'
 import { personalInfo, aboutInfo } from '../../data/resumeData'
 import './About.css'
 
 export default function About() {
   useScrollReveal()
+  const { lang, t } = useLocale()
 
   return (
     <section id="about">
       <div className="container">
         <div className="section-header reveal">
-          <div className="section-tag">About Me</div>
-          <h2 className="section-title">关于我</h2>
+          <div className="section-tag">{t.about.sectionTag}</div>
+          <h2 className="section-title">{t.about.sectionTitle}</h2>
           <div className="section-divider"></div>
         </div>
         <div className="about-grid">
@@ -20,20 +22,20 @@ export default function About() {
             </div>
             <div className="about-stat-badge badge-1">
               <i className="fas fa-star"></i>
-              <span>{aboutInfo.yearsExperience} 年经验</span>
+              <span>{aboutInfo.yearsExperience} {t.about.yearsExp}</span>
             </div>
             <div className="about-stat-badge badge-2">
               <i className="fas fa-check-circle"></i>
-              <span>{aboutInfo.projectsCount} 项目</span>
+              <span>{aboutInfo.projectsCount} {t.about.projects}</span>
             </div>
           </div>
           <div className="about-text reveal-right">
             <h3>
-              您好，我是{' '}
+              {t.about.greeting}{' '}
               <span className="name-gradient">{personalInfo.name}</span> 👋
             </h3>
-            <p>{aboutInfo.intro1}</p>
-            <p>{aboutInfo.intro2}</p>
+            <p>{aboutInfo.intro1[lang]}</p>
+            <p>{aboutInfo.intro2[lang]}</p>
             <div className="about-info-grid">
               <div className="about-info-item">
                 <i className="fas fa-map-marker-alt"></i> {personalInfo.location}
@@ -42,7 +44,7 @@ export default function About() {
                 <i className="fas fa-envelope"></i> {personalInfo.email}
               </div>
               <div className="about-info-item">
-                <i className="fas fa-graduation-cap"></i> {personalInfo.education}
+                <i className="fas fa-graduation-cap"></i> {personalInfo.education[lang]}
               </div>
               <div className="about-info-item">
                 <i className="fas fa-language"></i> {personalInfo.languages}
