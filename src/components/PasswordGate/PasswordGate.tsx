@@ -16,6 +16,10 @@ export default function PasswordGate({ onSuccess }: PasswordGateProps) {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!password.trim()) return
+    if (!WORKER_URL) {
+      setError('服务地址未配置，请联系管理员')
+      return
+    }
     setLoading(true)
     setError('')
     try {

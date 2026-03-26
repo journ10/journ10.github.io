@@ -21,7 +21,21 @@ function App() {
     const cached = sessionStorage.getItem('resumeData')
     if (cached) {
       try {
-        setResumeData(JSON.parse(cached))
+        const parsed = JSON.parse(cached)
+        if (
+          parsed &&
+          typeof parsed === 'object' &&
+          parsed.personalInfo &&
+          parsed.aboutInfo &&
+          Array.isArray(parsed.skillCategories) &&
+          Array.isArray(parsed.experiences) &&
+          Array.isArray(parsed.educations) &&
+          Array.isArray(parsed.projects)
+        ) {
+          setResumeData(parsed)
+        } else {
+          sessionStorage.removeItem('resumeData')
+        }
       } catch {
         sessionStorage.removeItem('resumeData')
       }
